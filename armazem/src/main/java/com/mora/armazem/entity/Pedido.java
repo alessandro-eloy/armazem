@@ -1,11 +1,12 @@
 package com.mora.armazem.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
 
 /*
@@ -13,14 +14,14 @@ import lombok.Data;
 */
 
 @Entity
+@SequenceGenerator(initialValue = 1, name = "seq_pedido")
 @Data
-public class Estoque {
+public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Date dataSaida;
-	private String quantidade;
-	private String usuario;
-	private String produto;
+	private LocalDate dataSaida;
+	private String loginUsuario;
+	private String codigoProduto;
 }

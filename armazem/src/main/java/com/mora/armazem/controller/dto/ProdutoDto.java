@@ -10,4 +10,5 @@ import lombok.Data;
 public class ProdutoDto {
 	private String codigo;
 	private String nome;
+	private Long quantidade;
 }
