@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mora.armazem.controller.dto.ProdutoDto;
 import com.mora.armazem.entity.Produto;
+import com.mora.armazem.mapper.ProdutoMapper;
 import com.mora.armazem.repository.ProdutoRepository;
 
 @RestController
@@ -23,22 +24,22 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	@Autowired
+	private ProdutoMapper mapper;
 	
 	@GetMapping
 	public List<ProdutoDto> getProduto() {
-		ProdutoDto produtoDto = new ProdutoDto();
-		produtoDto.setNome("marreta");
-		return List.of(produtoDto);
+		List<Produto> produtos = produtoRepository.findAll();
+		return mapper.mapProdutosToProdutosDto(produtos);
 	}
 	
 	@PostMapping
-	public void postProduto(@RequestBody ProdutoDto produtoDto) {
+	public ProdutoDto postProduto(@RequestBody ProdutoDto produtoDto) {
 		
-		Produto produto = new Produto();
-		produto.setCodigo(Long.valueOf(produtoDto.getCodigo()));
-		produto.setNome(produtoDto.getNome());
+		Produto produto = mapper.mapProdutoDtoToProduto(produtoDto);
+		Produto produtoCriado = produtoRepository.save(produto);
 		
-		produtoRepository.save(produto);
+		return mapper.mapProdutoToProdutoDto(produtoCriado);
 	}
 	
 }

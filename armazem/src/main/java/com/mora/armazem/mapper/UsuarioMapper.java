@@ -1,5 +1,8 @@
-
 package com.mora.armazem.mapper;
+
+/*
+* @author Ayowole_Agbedejobi and Alessandro_Eloy
+*/
 
 import java.util.List;
 

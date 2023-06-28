@@ -1,5 +1,7 @@
 package com.mora.armazem.entity;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,14 +14,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Usuario {
-	
+public class Estoque {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String nome;
-	private String senha;
-	private String login;
-	private String nivelAcesso;
+	private Date dataSaida;
+	private String quantidade;
+	private String usuario;
+	private String produto;
 }

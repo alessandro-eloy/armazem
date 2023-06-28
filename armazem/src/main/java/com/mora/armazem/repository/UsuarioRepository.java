@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mora.armazem.entity.Usuario;
 
-/*
+ /*
  * @author Ayowole_Agbedejobi and Alessandro_Eloy
  */
 
