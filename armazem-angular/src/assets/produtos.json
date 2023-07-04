@@ -1,5 +1,5 @@
 [
-  { "id":"3d2a1sd35", "nome":"martelo" },
-  { "id":"13d51as5d13a", "nome":"marreta" },
-  { "id":"d84a68s4da", "nome":"prafuso M8" }
+  { "codigo":"3d2a1sd35", "nome":"martelo","quantidade":"10" },
+  { "codigo":"13d51as5d13a", "nome":"marreta", "quantidade":"20" },
+  { "codigo":"d84a68s4da", "nome":"prafuso M8","quantidade":"100" }
 ]

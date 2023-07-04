@@ -19,7 +19,7 @@ import com.mora.armazem.mapper.ProdutoMapper;
 import com.mora.armazem.repository.ProdutoRepository;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("api/produtos")
 public class ProdutoController {
 	
 	@Autowired

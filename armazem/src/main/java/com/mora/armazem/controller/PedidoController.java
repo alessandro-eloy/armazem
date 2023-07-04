@@ -19,7 +19,7 @@ import com.mora.armazem.mapper.PedidoMapper;
 import com.mora.armazem.repository.PedidoRepository;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("api/pedidos")
 public class PedidoController {
 	
 	@Autowired 

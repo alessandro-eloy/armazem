@@ -6,7 +6,7 @@ import { ErroDialogComponent } from 'src/app/share/components/erro-dialog/erro-d
 import { CommonModule } from '@angular/common';
 
 import { Produtos } from '../model/produtos';
-import { ProdutosService } from '../serviços/produtos.service';
+import { ProdutosService } from '../servicos/produtos.service';
 
 
 @Component({
@@ -17,9 +17,8 @@ import { ProdutosService } from '../serviços/produtos.service';
 export class ProdutosComponent implements OnInit{
 
   produto$: Observable <Produtos[]> ;
-  displayedColumns = ['id', 'nome','actions']
+  displayedColumns = ['codigo', 'nome', 'quantidade','actions']
 
-  //produtosService:ProdutosService;
 
   constructor(
     private produtosService:ProdutosService,
@@ -27,10 +26,10 @@ export class ProdutosComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute
     ){
-    //this.produtos = []
-    //this.produtosService = new ProdutosService();
-    this.produto$ = this.produtosService.list()
-    .pipe(
+
+      this.produto$ = this.produtosService.list()
+
+      .pipe(
       catchError(error =>{
         this.onError('Erro ao carregar produtos.');
         return of ([])
@@ -50,8 +49,7 @@ export class ProdutosComponent implements OnInit{
 
 
   onAdd(){
-    const a = 5;
-   console.log('erro',a);
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }
