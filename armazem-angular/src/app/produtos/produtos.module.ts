@@ -4,9 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppMaterialModule } from '../share/app-material/app-material.module';
 import { SharedModule } from '../share/share.module';
-import { ProdutosFormComponent } from './produtos-form/produtos-form.component';
+import { ProdutosFormComponent } from './Containers/produtos-form/produtos-form.component';
 import { ProdutosRoutingModule } from './produtos-routing.module';
-import { ProdutosComponent } from './produtos/produtos.component';
+import { ProdutosComponent } from './Containers/produtos/produtos.component';
+import { ProdutosListComponent } from './Components/produtos-list/produtos-list.component';
 
 
 
@@ -14,7 +15,8 @@ import { ProdutosComponent } from './produtos/produtos.component';
 @NgModule( {
   declarations: [
     ProdutosComponent,
-    ProdutosFormComponent
+    ProdutosFormComponent,
+    ProdutosListComponent
   ],
   imports: [
     CommonModule,

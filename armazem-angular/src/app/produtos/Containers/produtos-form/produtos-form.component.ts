@@ -2,8 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
-import { ProdutosService } from '../servicos/produtos.service';
+import { ProdutosService } from '../../servicos/produtos.service';
+import { Produtos } from '../../model/produtos';
 
 @Component({
   selector: 'app-produtos-form',
@@ -22,11 +24,13 @@ export class ProdutosFormComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private service: ProdutosService,
     private _snackBar: MatSnackBar,
-    private location: Location){
+    private location: Location,
+    private route: ActivatedRoute){
   }
 
   ngOnInit(): void {
-
+    const produto: Produtos = this.route.snapshot.data['produto'];
+    console.log(produto);
   }
 
   onSubmit(){
@@ -35,12 +39,12 @@ export class ProdutosFormComponent implements OnInit {
   }
 
   onCancel(){
-    this.location.back;
+    this.location.back();
   }
 
   private onSuccess(){
     this._snackBar.open("Produto Salvo com Sucesso!", " ", {duration: 3000});
-    this.onCancel;
+    this.onCancel();
   }
 
   private onError(){

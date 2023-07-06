@@ -1,0 +1,46 @@
+<mat-table mat-table [dataSource]="produtos">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Codigo Column -->
+  <ng-container matColumnDef="codigo">
+    <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
+    <mat-cell *matCellDef="let produtos"> {{produtos.codigo}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef> Produto </mat-header-cell>
+    <mat-cell *matCellDef="let produtos"> {{produtos.nome}} </mat-cell>
+  </ng-container>
+
+  <!-- Quantidade Column -->
+  <ng-container matColumnDef="quantidade">
+    <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
+    <mat-cell *matCellDef="let produtos"> {{produtos.quantidade}} </mat-cell>
+  </ng-container>
+
+  <!-- button Column -->
+  <ng-container matColumnDef="actions" >
+    <mat-header-cell *matHeaderCellDef class="action-column-header">
+      <button mat-mini-fab color="accent" (click)="onAdd()" arial-label="Adicionar um produto.">
+        <mat-icon >add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let produto" class="action-column">
+      <button mat-icon-button color="primary" (click)="onEdit(produto)" aria-label="Editar produto.">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" aria-label="Remover produto.">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

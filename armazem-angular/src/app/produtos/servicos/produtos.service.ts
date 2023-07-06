@@ -17,9 +17,13 @@ export class ProdutosService {
     return this.httpClient.get<Produtos[]>(this.API)
     .pipe(
       first(),
-      delay(5000),
+      delay(3000),
       tap(produtos => console.log(produtos))
     );
+  }
+
+  loadById(id:string){
+    return this.httpClient.get<Produtos>(`${this.API}/${id}`);
   }
 
   save(record: Partial<Produtos>){

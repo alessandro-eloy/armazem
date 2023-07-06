@@ -11,4 +11,3 @@ import com.mora.armazem.entity.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {}
-

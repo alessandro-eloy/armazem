@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mora.armazem.controller.dto.ProdutoCreate;
 import com.mora.armazem.controller.dto.ProdutoDto;
 import com.mora.armazem.controller.dto.ProdutoUpdate;
 import com.mora.armazem.entity.Produto;
@@ -39,9 +40,9 @@ public class ProdutoController {
 	}
 	
 	@PostMapping
-	public ProdutoDto postProduto(@RequestBody ProdutoDto produtoDto) {
+	public ProdutoDto postProduto(@RequestBody ProdutoCreate produtoCreate) {
 		
-		Produto produto = mapper.mapProdutoDtoToProduto(produtoDto);
+		Produto produto = mapper.mapProdutoCreateToProduto(produtoCreate);
 		Produto produtoCriado = produtoRepository.save(produto);
 		
 		return mapper.mapProdutoToProdutoDto(produtoCriado);

@@ -3,10 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErroDialogComponent } from 'src/app/share/components/erro-dialog/erro-dialog.component';
-import { CommonModule } from '@angular/common';
 
-import { Produtos } from '../model/produtos';
-import { ProdutosService } from '../servicos/produtos.service';
+import { Produtos } from '../../model/produtos';
+import { ProdutosService } from '../../servicos/produtos.service';
 
 
 @Component({
@@ -17,11 +16,11 @@ import { ProdutosService } from '../servicos/produtos.service';
 export class ProdutosComponent implements OnInit{
 
   produto$: Observable <Produtos[]> ;
-  displayedColumns = ['codigo', 'nome', 'quantidade','actions']
+
 
 
   constructor(
-    private produtosService:ProdutosService,
+    private produtosService: ProdutosService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
@@ -50,6 +49,10 @@ export class ProdutosComponent implements OnInit{
 
   onAdd(){
     this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  onEdit(produtos: Produtos){
+    this.router.navigate(["edit", produtos.id],{relativeTo:this.route} )
   }
 
 }
