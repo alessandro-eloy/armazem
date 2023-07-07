@@ -27,6 +27,22 @@ export class ProdutosService {
   }
 
   save(record: Partial<Produtos>){
+    if(record.id){
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Produtos>){
     return this.httpClient.post<Produtos>(this.API, record).pipe(first());
   }
+
+  private update(record: Partial<Produtos>){
+    return this.httpClient.put<Produtos>(`${this.API}/${record.id}`,record).pipe(first());
+  }
+
+  remove(id:string){
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
+
 }

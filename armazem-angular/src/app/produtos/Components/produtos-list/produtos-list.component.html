@@ -29,12 +29,12 @@
       </button>
     </mat-header-cell>
 
-    <mat-cell *matCellDef="let produto" class="action-column">
-      <button mat-icon-button color="primary" (click)="onEdit(produto)" aria-label="Editar produto.">
+    <mat-cell *matCellDef="let produtos" class="action-column">
+      <button mat-icon-button color="primary" (click)="onEdit(produtos)" aria-label="Editar produto.">
         <mat-icon>edit</mat-icon>
       </button>
 
-      <button mat-icon-button color="warn" aria-label="Remover produto.">
+      <button mat-icon-button color="warn" (click)="onDelete(produtos)" aria-label="Remover produto.">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>

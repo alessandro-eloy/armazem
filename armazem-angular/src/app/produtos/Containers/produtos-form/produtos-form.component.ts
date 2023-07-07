@@ -15,6 +15,7 @@ import { Produtos } from '../../model/produtos';
 export class ProdutosFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    id:[""],
     nome: [""],
     codigo: [""],
     quantidade:[""]
@@ -30,7 +31,12 @@ export class ProdutosFormComponent implements OnInit {
 
   ngOnInit(): void {
     const produto: Produtos = this.route.snapshot.data['produto'];
-    console.log(produto);
+    this.form.setValue({
+      id: produto.id,
+      nome: produto.nome,
+      codigo: produto.codigo,
+      quantidade: produto.quantidade
+     });
   }
 
   onSubmit(){
@@ -48,7 +54,7 @@ export class ProdutosFormComponent implements OnInit {
   }
 
   private onError(){
-    this._snackBar.open("Erro ao salvar.", " ", {duration: 3000});
+    this._snackBar.open("Erro ao salvar.", "X", {duration: 3000});
   }
 
 }

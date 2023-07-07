@@ -39,6 +39,13 @@ public class ProdutoController {
 		return mapper.mapProdutosToProdutosDto(produtos);
 	}
 	
+	@GetMapping("/{id}")
+	public Produto findById(@PathVariable Long id) {
+		return produtoRepository.findById(id).orElse(null);
+
+	}
+	
+	
 	@PostMapping
 	public ProdutoDto postProduto(@RequestBody ProdutoCreate produtoCreate) {
 		
@@ -49,7 +56,7 @@ public class ProdutoController {
 	}
  	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ProdutoUpdate produtoUpdate) {
+	public ResponseEntity<ProdutoDto> update(@PathVariable Long id, @RequestBody ProdutoUpdate produtoUpdate) {
 		if ((id == null || produtoUpdate.getId() == null) || id != produtoUpdate.getId()) {
 			return ResponseEntity.badRequest().build();
 		}

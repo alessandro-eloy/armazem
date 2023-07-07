@@ -3,6 +3,11 @@ import { Observable, of } from 'rxjs';
 
 import { Produtos } from '../model/produtos';
 import { ProdutosService } from '../servicos/produtos.service';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 export class produtoResolver implements Resolve<Produtos>{
 
