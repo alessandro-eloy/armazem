@@ -14,13 +14,13 @@ import lombok.Data;
 */
 
 @Entity
-@SequenceGenerator(initialValue = 1, name = "seq_pedido")
+@SequenceGenerator(initialValue = 1, name = "seq_estoque")
 @Data
-public class Pedido {
+public class Estoque {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+	private Long quantidade;
 	private LocalDate dataSaida;
 	private String loginUsuario;
 	private String codigoProduto;

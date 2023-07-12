@@ -15,11 +15,10 @@ import lombok.Data;
 @SequenceGenerator(initialValue = 1, name = "seq_usuario")
 @Data
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
 	private String nome;
 	private String senha;
 	private String login;

@@ -62,7 +62,7 @@ export class ProdutosComponent implements OnInit{
     this.produtosService.remove(produto.id).subscribe(
       ()=>{
         this.refresh();
-        this._snackBar.open("Produto Salvo com Sucesso!", "X", {
+        this._snackBar.open("Produto deletado com sucesso!", "X", {
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'center'

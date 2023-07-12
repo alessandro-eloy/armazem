@@ -17,6 +17,6 @@ export class produtoResolver implements Resolve<Produtos>{
     if (route.params && route.params['id']){
       return this.service.loadById(route.params['id']);
     }
-    return of ({id: '', codigo:'', nome: '', quantidade:''});
+    return of ({id: '', codigo:'', nome: ''});
   }
 }

@@ -7,5 +7,4 @@ public class ProdutoUpdate {
 	private Long id;
 	private String codigo;
 	private String nome;
-	private Long quantidade;
 }

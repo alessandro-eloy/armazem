@@ -14,7 +14,7 @@ export class ProdutosListComponent  implements OnInit  {
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['codigo', 'nome', 'quantidade','actions']
+  readonly displayedColumns = ['codigo', 'nome','actions']
 
   constructor(
 
