@@ -17,7 +17,8 @@ export class ProdutosFormComponent implements OnInit {
   form = this.formBuilder.group({
     id:[""],
     nome: [""],
-    codigo: [""]
+    codigo: [""],
+    quantidade: [""]
   });
 
   constructor(
@@ -33,7 +34,8 @@ export class ProdutosFormComponent implements OnInit {
     this.form.setValue({
       id: produto.id,
       nome: produto.nome,
-      codigo: produto.codigo
+      codigo: produto.codigo,
+      quantidade: produto.quantidade
      });
   }
 

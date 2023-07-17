@@ -21,4 +21,5 @@ public class Produto {
 	private Long id;
 	private String codigo;
 	private String nome;
+	private Long quantidade;
 }

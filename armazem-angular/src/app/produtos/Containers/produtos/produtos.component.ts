@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of, subscribeOn } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { ErroDialogComponent } from 'src/app/share/components/erro-dialog/erro-dialog.component';
 
 import { Produtos } from '../../model/produtos';
 import { ProdutosService } from '../../servicos/produtos.service';
-
 
 @Component({
   selector: 'app-produtos',

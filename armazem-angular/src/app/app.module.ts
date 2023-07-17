@@ -6,17 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { AppMaterialModule } from './share/app-material/app-material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule,
+    AppMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

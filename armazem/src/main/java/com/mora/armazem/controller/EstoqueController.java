@@ -5,6 +5,7 @@ package com.mora.armazem.controller;
  */
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,59 +22,77 @@ import com.mora.armazem.controller.dto.EstoqueDto;
 import com.mora.armazem.controller.dto.EstoqueUpdate;
 import com.mora.armazem.controller.dto.EstoqueCreate;
 import com.mora.armazem.entity.Estoque;
+import com.mora.armazem.entity.Produto;
+import com.mora.armazem.entity.Usuario;
 import com.mora.armazem.mapper.EstoqueMapper;
+import com.mora.armazem.mapper.ProdutoMapper;
+import com.mora.armazem.mapper.UsuarioMapper;
 import com.mora.armazem.repository.EstoqueRepository;
+import com.mora.armazem.repository.ProdutoRepository;
+import com.mora.armazem.repository.UsuarioRepository;
+
 
 @RestController
 @RequestMapping("api/estoque")
 public class EstoqueController {
 	
 	@Autowired
-	private EstoqueRepository EstoqueRepository;
+	private EstoqueRepository estoqueRepository;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	
 	@Autowired
 	private EstoqueMapper mapper;
+
 	
 	@GetMapping
 	public List<EstoqueDto> getEstoque() {
-		List<Estoque> Estoque = EstoqueRepository.findAll();
-		return mapper.mapEstoqueToEstoqueDto(Estoque);
+		List<Estoque> estoque = estoqueRepository.findAll();
+		return mapper.mapEstoqueToEstoqueDto(estoque);
 	}
 	
 	@GetMapping("/{id}")
 	public Estoque findById(@PathVariable Long id) {
-		return EstoqueRepository.findById(id).orElse(null);
-
+		return estoqueRepository.findById(id).orElse(null);
+		
 	}
 	
 	
 	@PostMapping
-	public EstoqueDto postEstoque(@RequestBody EstoqueCreate estoqueCreate) {
+	public ResponseEntity<?> postEstoque(@RequestBody EstoqueCreate estoqueCreate) {
+		Optional<Usuario> optionalUsuario = usuarioRepository.findById(estoqueCreate.getIdUsuario());
 		
-		Estoque estoque = mapper.mapEstoqueCreateToEstoque(estoqueCreate);
-		Estoque estoqueCriado = EstoqueRepository.save(estoque);
-		
-		return mapper.mapEstoqueToEstoqueDto(estoqueCriado);
-	}
- 	
-	@PutMapping("/{id}")
-	public ResponseEntity<EstoqueDto> update(@PathVariable Long id, @RequestBody EstoqueUpdate estoqueUpdate) {
-		if ((id == null || estoqueUpdate.getId() == null) || id != estoqueUpdate.getId()) {
-			return ResponseEntity.badRequest().build();
+		try {
+			optionalUsuario.orElseThrow(Exception::new);			
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("usuario invalido");
 		}
 		
-		Estoque estoque = mapper.mapEstoqueUpdateToEstoque(estoqueUpdate);
+		Optional<Produto> optionalProduto = produtoRepository.findById(estoqueCreate.getIdProduto());
+		Produto produto = optionalProduto.orElseThrow();
 		
-		Estoque estoqueResultado = EstoqueRepository.save(estoque);
+		if (produto.getQuantidade() == null || produto.getQuantidade().longValue() <= 0) {
+			return ResponseEntity.badRequest().body("nao ha produto disponivel no estoque");
+		}
 		
-		EstoqueDto estoqueDtoResultado = mapper.mapEstoqueToEstoqueDto(estoqueResultado);
+		produto.setQuantidade(produto.getQuantidade().longValue() - 1);
+		produtoRepository.save(produto);
 		
-		return ResponseEntity.ok(estoqueDtoResultado);
+		Estoque estoque = mapper.mapEstoqueCreateToEstoque(estoqueCreate);
+		Estoque estoqueCriado = estoqueRepository.save(estoque);
+		
+		EstoqueDto estoqueDto = mapper.mapEstoqueToEstoqueDto(estoqueCriado);
+		
+		return ResponseEntity.ok(estoqueDto);
 	}
 	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		try {
-			EstoqueRepository.deleteById(id);			
+			estoqueRepository.deleteById(id);			
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}

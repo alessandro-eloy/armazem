@@ -20,8 +20,7 @@ public class Estoque {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Long quantidade;
 	private LocalDate dataSaida;
-	private String loginUsuario;
-	private String codigoProduto;
+	private Long idUsuario;
+	private Long idProduto;
 }
