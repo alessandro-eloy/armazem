@@ -1,5 +1,7 @@
 package com.mora.armazem.entity;
 
+import jakarta.persistence.Column;
+
 /*
  * 
  * @author Ayowole_Agbedejobi and Alessandro_Eloy
@@ -19,7 +21,13 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable=false, unique=true)
 	private String codigo;
+	
+	@Column(nullable=false, unique=true)
 	private String nome;
+	@
+	Column(nullable=false)
 	private Long quantidade;
 }

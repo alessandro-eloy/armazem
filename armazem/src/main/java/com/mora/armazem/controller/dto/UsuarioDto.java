@@ -7,7 +7,8 @@ import lombok.Data;
  */
 
 @Data
-public class UsuarioDto {
+public class UsuarioDto { 
+	private Long id;
 	private String nome;
 	private String senha;
 	private String login;

@@ -1,6 +1,6 @@
 export interface Estoque {
   id: string;
   dataSaida: string;
-  loginUsuario: string;
-  codigoProduto: string;
+  idUsuario: string;
+  idProduto: string;
 }

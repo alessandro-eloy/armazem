@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { delay, first, tap } from 'rxjs';
 
 import { Produtos } from './../model/produtos';
-import { delay, first, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

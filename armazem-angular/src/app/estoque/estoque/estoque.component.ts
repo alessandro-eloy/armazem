@@ -30,7 +30,7 @@ export class EstoqueComponent {
     this.estoque$ = this.estoqueService.list()
     .pipe(
     catchError(error =>{
-      this.onError('Erro ao carregar produtos.');
+      this.onError('Erro ao carregar lista.');
       return of ([])
     })
   );

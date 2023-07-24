@@ -12,7 +12,7 @@ import { AppMaterialModule } from './share/app-material/app-material.module';
 @NgModule({
   declarations: [
     AppComponent
-  ],
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

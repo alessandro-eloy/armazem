@@ -13,20 +13,16 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mora.armazem.controller.dto.EstoqueDto;
-import com.mora.armazem.controller.dto.EstoqueUpdate;
 import com.mora.armazem.controller.dto.EstoqueCreate;
 import com.mora.armazem.entity.Estoque;
 import com.mora.armazem.entity.Produto;
 import com.mora.armazem.entity.Usuario;
 import com.mora.armazem.mapper.EstoqueMapper;
-import com.mora.armazem.mapper.ProdutoMapper;
-import com.mora.armazem.mapper.UsuarioMapper;
 import com.mora.armazem.repository.EstoqueRepository;
 import com.mora.armazem.repository.ProdutoRepository;
 import com.mora.armazem.repository.UsuarioRepository;
@@ -42,7 +38,6 @@ public class EstoqueController {
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
 	@Autowired
 	private EstoqueMapper mapper;
 
