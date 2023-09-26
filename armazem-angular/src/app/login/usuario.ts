@@ -2,8 +2,7 @@
 export class Usuario {
 
     id!: string
-    login!: string;
-    senha!: string;
+    cod!: string;
     nome!: string;
     nvAcesso!: string;
 }

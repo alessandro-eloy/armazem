@@ -9,6 +9,6 @@ import com.mora.armazem.entity.Estoque;
 * @author Ayowole_Agbedejobi and Alessandro_Eloy
 */
 @Repository
-public interface EstoqueRepository extends JpaRepository<Estoque, Long>  {
+public interface EstoqueRepository extends JpaRepository<Estoque, Integer>  {
 
 }

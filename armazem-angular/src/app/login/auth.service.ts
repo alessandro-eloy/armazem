@@ -13,8 +13,8 @@ export class AuthService {
   private readonly API = "api/usuarios";
 
   loginUsuario(objeto:any){
-    return this.httpClient.post<any>(
-      `${this.API}/CriarTokenIdentity/`,objeto);
+    return this.httpClient.get<any>(
+      `${this.API}/`,objeto);
   }
 
 

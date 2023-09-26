@@ -1,5 +1,7 @@
 package com.mora.armazem.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +12,8 @@ import com.mora.armazem.entity.Usuario;
  */
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+	
+	Optional<Usuario> findByCod(Long cod);
+	Optional<Usuario> findByNome(String nome);
 }

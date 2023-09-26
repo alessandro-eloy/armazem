@@ -1,33 +1,77 @@
 package com.mora.armazem.entity;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.SequenceGenerator;
-import lombok.Data;
+import jakarta.persistence.ManyToOne;
 
 /*
 * @author Ayowole_Agbedejobi and Alessandro_Eloy
 */
 
 @Entity
-@SequenceGenerator(initialValue = 1, name = "seq_estoque")
-@Data
-public class Estoque {
-	
+public class Estoque implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
-	private LocalDate dataSaida;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private LocalDateTime dataSaida = LocalDateTime.now();
 	
-	@JoinColumn(nullable = false )
-	private Long idUsuario;
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 	
-	@JoinColumn(nullable = false )
-	private Long idProduto;
+	@ManyToOne
+	@JoinColumn(name = "produto_id")
+	private Produto produto;
+
+	public Estoque() {
+		super();
+		
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(LocalDateTime dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	
+	
 }
+

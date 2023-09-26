@@ -1,6 +1,8 @@
 package com.mora.armazem.controller;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mora.armazem.controller.dto.UsuarioDto;
-import com.mora.armazem.controller.dto.UsuarioUpdate;
 import com.mora.armazem.entity.Usuario;
-import com.mora.armazem.mapper.UsuarioMapper;
-import com.mora.armazem.repository.UsuarioRepository;
+import com.mora.armazem.services.UsuarioServices;
+
+import jakarta.validation.Valid;
 
 /*
  * @author Ayowole_Agbedejobi and Alessandro_Eloy
@@ -26,58 +29,40 @@ import com.mora.armazem.repository.UsuarioRepository;
 @RestController
 @RequestMapping("api/usuarios")
 public class UsuarioController {
-	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-	@Autowired
-	private UsuarioMapper mapper;
-	
-	@GetMapping
-	public List<UsuarioDto> getUsuario(){
-		List<Usuario> usuarios = usuarioRepository.findAll();
-		return mapper.mapUsuariosToUsuariosDto(usuarios);
-		
-	}
-	
-	@GetMapping("/{id}")
-	public Usuario findById(@PathVariable Long id) {
-		return usuarioRepository.findById(id).orElse(null);
 
+	@Autowired
+	private UsuarioServices service;
+	
+		
+	@GetMapping(value = "/{cod}")
+	public ResponseEntity<UsuarioDto> buscar(@PathVariable Long cod) {
+		Usuario obj = service.findCod(cod);
+		return ResponseEntity.ok().body(new UsuarioDto(obj));
+
+	}
+	@GetMapping
+	public ResponseEntity<List<UsuarioDto>> findAll(){
+		List<Usuario> list = service.findAll();
+		List<UsuarioDto> listDto = list.stream().map(obj -> new UsuarioDto(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@PostMapping
-	public UsuarioDto postUsuario(@RequestBody UsuarioDto usuarioDto) {
-		Usuario usuario = mapper.mapUsuarioDtoToUsuario(usuarioDto);
-		
-		Usuario usuarioCriado = usuarioRepository.save(usuario);
-		
-		return mapper.mapUsuarioToUsuarioDto(usuarioCriado);
+	public ResponseEntity<UsuarioDto> create(@Valid @RequestBody UsuarioDto objDto){
+		Usuario newObj = service.create(objDto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<UsuarioDto> update(@PathVariable Long id, @RequestBody UsuarioUpdate usuarioUpdate) {
-		if ((id == null || usuarioUpdate.getId() == null) || id != usuarioUpdate.getId()) {
-			return ResponseEntity.badRequest().build();
-		}
-		
-		Usuario usuario = mapper.mapUsuarioUpdateToUsuario(usuarioUpdate);
-		
-		Usuario usuarioResultado = usuarioRepository.save(usuario);
-		
-		UsuarioDto usuarioDtoResultado = mapper.mapUsuarioToUsuarioDto(usuarioResultado);
-		
-		return ResponseEntity.ok(usuarioDtoResultado);
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<UsuarioDto> update(@PathVariable Integer id, @Valid @RequestBody UsuarioDto objDto){
+		Usuario obj = service.update(id, objDto);
+		return ResponseEntity.ok().body(new UsuarioDto(obj));
 	}
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id) {
-		try {
-			usuarioRepository.deleteById(id);			
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
-		
-		return ResponseEntity.ok().build();
-	}
-	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<UsuarioDto> delete(@PathVariable Integer id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}	
 }
