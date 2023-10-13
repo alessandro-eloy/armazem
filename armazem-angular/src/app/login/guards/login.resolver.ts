@@ -9,14 +9,14 @@ import { Usuario } from '../usuario';
   providedIn: 'root'
 })
 
-export class loginResolver implements Resolve<Usuario>{
+export class loginResolver /*implements Resolve<Usuario>*/{
 
   constructor(private service: AuthService){ }
 
-  resolve(route:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Usuario>{
+  /*resolve(route:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Usuario>{
     if (route.params && route.params['cod']){
       return this.service.loadById(route.params['cod']);
     }
     return of ({id: '', cod:'', nome: '', nvAcesso:''});
-  }
+  }*/
 }

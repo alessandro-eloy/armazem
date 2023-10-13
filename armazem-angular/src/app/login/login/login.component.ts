@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NonNullableFormBuilder } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
-import { Usuario } from '../usuario';
 
 
 
@@ -14,6 +11,8 @@ import { Usuario } from '../usuario';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
+
+  hide = true;
 
   username: any;
   password : any;
