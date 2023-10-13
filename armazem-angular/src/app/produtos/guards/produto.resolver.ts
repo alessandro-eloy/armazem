@@ -14,8 +14,8 @@ export class produtoResolver implements Resolve<Produtos>{
   constructor(private service: ProdutosService){ }
 
   resolve(route:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Produtos>{
-    if (route.params && route.params['id']){
-      return this.service.loadById(route.params['id']);
+    if (route.params && route.params['codigo']){
+      return this.service.loadById(route.params['codigo']);
     }
     return of ({id: '', codigo:'', nome: '', quantidade:''});
   }

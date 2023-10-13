@@ -1,12 +1,13 @@
 <mat-card>
 
-  <mat-toolbar color="primary"> Código do Produto</mat-toolbar>
+  <mat-toolbar color="primary"> Código Produto</mat-toolbar>
 
-  <mat-card-content *matCellDef="let estoque">
-    <form class="min-width" >
+  <mat-card-content>
+    <form [formGroup]="form" class="min-width" >
       <mat-form-field class="full-width">
-        <input autofocus matInput placeholder="Código" formControlName = "codigo" (click)="onBuscar(estoque)" required>
+        <input autofocus placeholder="Código Produto"
+        formControlName = "codigo"
+        (click)="onAdd()">
       </mat-form-field>
     </form>
   </mat-card-content>
-</mat-card>

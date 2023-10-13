@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Estoque } from '../../estoque/model/estoque';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../service/home.service';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { Estoque } from 'src/app/estoque/model/estoque';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +12,27 @@ import { HomeService } from '../service/home.service';
 })
 export class HomeComponent implements OnInit {
 
+  form = this.formBuilder.group({
+    produto: [""],
+    usuario: [""]
+  });
 
-  @Input() estoque:Estoque[] = []
-  @Output() buscar = new EventEmitter(false);
-
-  constructor(private homeService: HomeService ){}
+  constructor(
+    private homeService: HomeService,
+    private route: ActivatedRoute,
+    private formBuilder: NonNullableFormBuilder
+    )
+    {}
 
   ngOnInit(): void {
-
+    const estoque: Estoque = this.route.snapshot.data['estoque'];
+    this.form.setValue({
+      produto: estoque.produto,
+      usuario: estoque.usuario
+     });
   }
 
-  onBuscar(estoque: Estoque){
-    this.homeService.findByCod(estoque.idProduto);
+  onAdd(): void{
+    this.homeService.save(this.form.value);
   }
 }

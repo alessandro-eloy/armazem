@@ -40,7 +40,7 @@ export class ProdutosComponent implements OnInit{
 
   onError(errorMsg: string) {
     this.dialog.open(ErroDialogComponent, {
-      data: errorMsg,
+      data: errorMsg
     });
   }
 
@@ -54,11 +54,11 @@ export class ProdutosComponent implements OnInit{
   }
 
   onEdit(produto: Produtos){
-    this.router.navigate(['edit', produto.id],{relativeTo: this.route} )
+    this.router.navigate(['edit', produto.codigo],{relativeTo: this.route} )
   }
 
   onRemove(produto: Produtos){
-    this.produtosService.remove(produto.id).subscribe(
+    this.produtosService.remove(produto.codigo).subscribe(
       ()=>{
         this.refresh();
         this._snackBar.open("Produto deletado com sucesso!", "X", {

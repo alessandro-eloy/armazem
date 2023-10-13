@@ -1,12 +1,25 @@
 <mat-card>
-
-  <mat-toolbar color="primary"> Login</mat-toolbar>
+<mat-toolbar color="primary"> Detalhes do Produto</mat-toolbar>
 
   <mat-card-content>
-    <form class="min-width" >
-      <mat-form-field class="full-width">
-        <input autofocus matInput placeholder="Código" formControlName = "cod" (click)="buscar()" required>
-      </mat-form-field>
+    <form class="form-group">
+      <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+      <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+      <div class="form-group">
+        <label for="email">User Name :</label>
+        <input type="text" class="form-control" id="username" ngModel="username" placeholder="Enter User Name"
+          name="username">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" ngModel="password" id="password" placeholder="Enter password"
+          name="password">
+      </div>
+
     </form>
   </mat-card-content>
+
+  <mat-card-actions>
+    <button (click)=handleLogin() class="btn btn-success">Login</button>
+  </mat-card-actions>
 </mat-card>

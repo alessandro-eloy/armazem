@@ -12,7 +12,7 @@ export class EstoqueListComponent implements OnInit {
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
 
-  readonly displayedColumns = ['idProduto', 'idUsuario', 'dataSaida']
+  readonly displayedColumns = ['nomeProduto', 'nomeUsuario', 'dataSaida']
 
   constructor(
 

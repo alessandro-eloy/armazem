@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first } from 'rxjs';
+import { Estoque } from 'src/app/estoque/model/estoque';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,18 @@ export class HomeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  findByCod(cod:string){
-    return this.httpClient.delete(`${this.API}/${cod}`).pipe(first());
+  save(record: Partial<Estoque>){
+    if(record.usuario){
+      return this.findById(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Estoque>){
+    return this.httpClient.post<Estoque>(this.API, record).pipe(first());
+  }
+
+  findById(record: Partial<Estoque>){
+    return
   }
 }

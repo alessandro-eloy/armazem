@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { AppMaterialModule } from '../share/app-material/app-material.module';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

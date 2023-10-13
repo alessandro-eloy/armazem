@@ -4,15 +4,15 @@
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Codigo Column -->
-  <ng-container matColumnDef="idProduto">
+  <ng-container matColumnDef="nomeProduto">
     <mat-header-cell *matHeaderCellDef> Codigo </mat-header-cell>
-    <mat-cell *matCellDef="let estoque"> {{estoque.idProduto}} </mat-cell>
+    <mat-cell *matCellDef="let estoque"> {{estoque.nomeProduto}} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="idUsuario">
+  <ng-container matColumnDef="nomeUsuario">
     <mat-header-cell *matHeaderCellDef> usuario </mat-header-cell>
-    <mat-cell *matCellDef="let estoque"> {{estoque.idUsuario}} </mat-cell>
+    <mat-cell *matCellDef="let estoque"> {{estoque.nomeUsuario}} </mat-cell>
   </ng-container>
 
 <!-- Name Column -->

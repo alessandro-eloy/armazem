@@ -6,10 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
 import { AppMaterialModule } from './share/app-material/app-material.module';
 import { AuthService } from './login/auth.service';
 import { LoginComponent } from './login/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { LoginComponent } from './login/login/login.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     HttpClientModule,
-    AuthModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

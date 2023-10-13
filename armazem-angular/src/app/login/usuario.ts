@@ -1,8 +1,8 @@
 
 export class Usuario {
 
-    id!: string
-    cod!: string;
+    id!: any;
+    cod!: any;
     nome!: string;
     nvAcesso!: string;
 }
