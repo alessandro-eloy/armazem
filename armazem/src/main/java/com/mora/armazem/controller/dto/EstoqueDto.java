@@ -19,7 +19,7 @@ public class EstoqueDto implements Serializable{
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime dataSaida = LocalDateTime.now();
-	private Long usuario;
+	private Integer usuario;
 	private String produto;
 	private String nomeUsuario;
 	private String nomeProduto;
@@ -31,9 +31,9 @@ public class EstoqueDto implements Serializable{
 	public EstoqueDto(Estoque obj) {
 		this.id = obj.getId();
 		this.dataSaida = obj.getDataSaida();
-		this.usuario = obj.getUsuario().getCod();
+		this.usuario = obj.getUsuario().getId();
 		this.produto = obj.getProduto().getCodigo();
-		this.nomeUsuario = obj.getUsuario().getNome();
+		this.nomeUsuario = obj.getUsuario().getLogin();
 		this.nomeProduto = obj.getProduto().getNome();
 	}
 
@@ -53,11 +53,11 @@ public class EstoqueDto implements Serializable{
 		this.dataSaida = dataSaida;
 	}
 
-	public Long getUsuario() {
+	public Integer getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Long usuario) {
+	public void setUsuario(Integer usuario) {
 		this.usuario = usuario;
 	}
 

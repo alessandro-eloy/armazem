@@ -2,6 +2,7 @@ package com.mora.armazem.controller.dto;
 
 
 
+import com.mora.armazem.entity.UserRole;
 import com.mora.armazem.entity.Usuario;
 
 import jakarta.validation.constraints.NotNull;
@@ -13,11 +14,11 @@ import jakarta.validation.constraints.NotNull;
 public class UsuarioDto { 
 
 	private Integer id;
-	@NotNull(message = "O campo NOME é requerido")
-	private String nome;
-	@NotNull(message = "O campo CÓDIGO é requerido")
-	private Long cod;
-	private String nivelAcesso;
+	@NotNull(message = "O campo LOGIN é requerido")
+	private String login;
+	@NotNull(message = "O campo SENHA é requerido")
+	private String senha;
+	private UserRole role;
 	
 	
 	public UsuarioDto() {
@@ -27,36 +28,32 @@ public class UsuarioDto {
 	public UsuarioDto(Usuario obj) {
 		super();
 		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.cod = obj.getCod();
-		this.nivelAcesso = obj.getNivelAcesso();
+		this.login = obj.getLogin();
+		this.senha = obj.getSenha();
+		this.role = obj.getRole();
 	}
-	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public String getLogin() {
+		return login;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setLogin(String login) {
+		this.login = login;
 	}
-	public Long getCod() {
-		return cod;
+	public String getSenha() {
+		return senha;
 	}
-	public void setCod(Long cod) {
-		this.cod = cod;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	public String getNivelAcesso() {
-		return nivelAcesso;
+	public UserRole getRole() {
+		return role;
 	}
-	public void setNivelAcesso(String nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
-	
-	
-	
 }

@@ -1,5 +1,7 @@
 package com.mora.armazem.controller.dto;
 
-public record RegisterDto(String login, String senha, String role) {
+import com.mora.armazem.entity.UserRole;
+
+public record RegisterDto(String login, String senha, UserRole role) {
 
 }

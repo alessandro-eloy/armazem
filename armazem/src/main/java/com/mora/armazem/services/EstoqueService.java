@@ -51,7 +51,7 @@ public class EstoqueService {
 	}
 	
 	private Estoque newEstoque(EstoqueDto obj) {
-		Usuario usuario = userservice.findCod(obj.getUsuario());
+		Usuario usuario = userservice.findById(obj.getUsuario());
 		Produto produto = produtoservice.findCodigo(obj.getProduto());
 		
 		Estoque estoque = new Estoque();
